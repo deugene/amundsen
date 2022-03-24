@@ -285,7 +285,9 @@ class DbtExtractor(Extractor):
         if self._extract_lineage:
             for upstream, downstreams in self._dbt_manifest['child_map'].items():
                 valid_downstreams = [
-                    dbt_id_to_table_key[k] for k in downstreams if k.startswith(DBT_MODEL_PREFIX)
+                    dbt_id_to_table_key[k] 
+                    for k in downstreams 
+                    if k in dbt_id_to_table_key and k.startswith(DBT_MODEL_PREFIX)
                 ]
                 if valid_downstreams:
                     yield TableLineage(
