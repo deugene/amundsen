@@ -310,8 +310,8 @@ class DbtExtractor(Extractor):
         col_names = set(manifest_columns.keys()) | set(catalog_columns.keys())
 
         for col_name in col_names:
-            catalog_col_content = catalog_columns.get(col_name)
-            manifest_col_content = manifest_columns.get(col_name)
+            catalog_col_content = catalog_columns.get(col_name) or {}
+            manifest_col_content = manifest_columns.get(col_name) or {}
 
             if catalog_col_content:
                 col_desc = None
