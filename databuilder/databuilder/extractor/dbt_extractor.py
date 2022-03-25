@@ -289,7 +289,7 @@ class DbtExtractor(Extractor):
                     for k in downstreams 
                     if k in dbt_id_to_table_key and k.startswith(DBT_MODEL_PREFIX)
                 ]
-                if valid_downstreams:
+                if valid_downstreams and upstream in dbt_id_to_table_key:
                     yield TableLineage(
                         table_key=dbt_id_to_table_key[upstream],
                         downstream_deps=valid_downstreams
